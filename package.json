@@ -1,19 +1,20 @@
 {
-  "name": "sifirdan-projem",
+  "name": "outlook-mail-viewer",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Outlook maillerini anahtarla gösteren web uygulaması.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "AZEKenanPro3341",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "axios": "^1.9.0",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "express-session": "^1.18.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "sqlite3": "^5.1.7"
   }
 }
