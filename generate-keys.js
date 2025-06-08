@@ -14,10 +14,14 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY, setting_key TEXT NOT NULL UNIQUE, setting_value TEXT)`);
     
     // Sadece ayarlar tablosu boşsa başlangıç değerini ekle
-    db.get("SELECT count(*) as count FROM settings WHERE setting_key = 'copy_text'", (err, row) => {
+    db.get("SELECT count(*) as count FROM settings", (err, row) => {
         if (row.count === 0) {
+            const settings = [
+                ['copy_text', 'Lütfen kopyalanacak metni admin panelinden ayarlayın.'], ['tenant_id', ''], ['client_id', ''],
+                ['client_secret', ''], ['target_user_id', '']
+            ];
             const settingStmt = db.prepare("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)");
-            settingStmt.run('copy_text', 'Lütfen kopyalanacak metni admin panelinden ayarlayın.');
+            for (const setting of settings) { settingStmt.run(setting[0], setting[1]); }
             settingStmt.finalize();
             console.log("Başlangıç ayarları eklendi.");
         }
